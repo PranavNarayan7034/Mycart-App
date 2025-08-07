@@ -1,0 +1,12 @@
+NextAuth.js
+------------
+a open-source Authentication solution for next.js 
+: Authentication
+: Session management ( Token --> Session )
+: different social providers (google/github/facebook)
+: also credential based login support 
+
+1. providers    : how uses authenticate, either with google/github / credentials
+2. session strategy   : where session data(login user data) ,either jwt token /database
+3. callback    : customize how data is handled in various points (token contents, where token storing)
+4. pages    : auth pages (eg: login , error)
