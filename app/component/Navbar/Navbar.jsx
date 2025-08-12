@@ -13,12 +13,12 @@ const Navbar = () => {
 
     return (
         <nav className='flex justify-between items-center
-            p-4'>
+            p-4 px-16'>
             <div className='text-3xl'>MyCart</div>
             <div className='flex gap-6'>
-                <a href="">Home</a>
+                <a href="/">Home</a>
                 <a href="">About</a>
-                <a href="">Products</a>
+                <a href="/all-products">Products</a>
                 <a href="">Contact</a>
             </div>
             {userId

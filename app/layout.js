@@ -1,7 +1,10 @@
 import "./globals.css";
+import { Outfit } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Providers from "./Providers";
 import { headers } from "next/headers";
+
+const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
 export const metadata = {
   title: "Create Next App",
@@ -27,7 +30,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${outfit.className} antialiased text-gray-700 bg-orange-400/20`}>
         <Toaster/>
         <Providers initialUser = {{userId,Name,Email}}>
           {children}
