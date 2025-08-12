@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className=''>
-      <div className='flex px-16 h-auto lg:h-[calc(100vh-200px)] gap-16 my-16 md:my-0'>
+      <div className='flex px-16 h-auto lg:h-[calc(100vh-200px)] gap-16 my-16 md:my-16'>
 
         <div className='flex flex-col gap-8 justify-center flex-1'>
           <h1 className='text-4xl font-extrabold text-green-700'>Cozy up in your perfect Chair</h1>

@@ -21,7 +21,7 @@ const Signin = () => {
             })
             if (res?.ok) {
                 toast.success("Login SuccessFull")
-                router.push('/')
+                window.location.reload();
             }
             else if(res.error){
                 setError(res.error)

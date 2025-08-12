@@ -1,9 +1,10 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SessionProvider } from 'next-auth/react'
 import Navbar from './component/Navbar/Navbar';
 import { makeStore } from '@/redux/store';
 import { Provider } from 'react-redux';
+import axios from 'axios';
 
 
 const Providers = ({ children, initialUser }) => {
@@ -15,6 +16,18 @@ const Providers = ({ children, initialUser }) => {
             Email: initialUser.Email
         }
     })
+
+    useEffect(() => {
+        const updateCart = async () => {
+            try {
+                await axios.post('/api/cart/Datafetch', initialUser)
+                console.log("Redux Cart updated on initial Rendering")
+            } catch (error) {
+                console.log("Error in api call ==", error.message)
+            }
+        }
+        updateCart()
+    } ,[])
 
     return (
         <Provider store={store}>
