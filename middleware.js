@@ -21,6 +21,7 @@ export async function middleware(req) {
     const token = await getToken(
         { req, secret: process.env.NEXTAUTH_SECRET });
     
+    
     if (isAuthpath && token) {
         return NextResponse.redirect(new URL('/',req.url))
     }
@@ -32,6 +33,7 @@ export async function middleware(req) {
         console.log("No Token Available")
         return NextResponse.next()
     }
+
 
     const response = NextResponse.next()
     response.headers.set("x-user-id", token.id)

@@ -5,7 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/dbModel";
 import { connectDB } from "@/dbConfig/dbConfig";
 import bcryptjs from "bcryptjs";
-import { NextResponse } from "next/server";
+import { NextResponse, userAgentFromString } from "next/server";
 
 connectDB(); // make sure to connect DB once at the top
 
@@ -50,29 +50,30 @@ const handler = NextAuth({
     ],
 
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ user, account }) {
             await connectDB();
 
             if (account?.provider === "google" || account?.provider === "github") {
-                const existingUser = await User.findOne({ Email: user.email });
+                const DbUser = await User.findOne({ Email: user.email });
 
-                if (!existingUser) {
+                if (!DbUser) {
                     const parts = user.name?.split(" ") || []
-                    const newUser = new User({
+                    const DbUser = new User({
                         Firstname: parts[0] || "",
                         Lastname: parts.slice(1).join(" ") || "",
                         Email: user.email,
                         Password: "",
                     });
-                    await newUser.save();
+                    await DbUser.save();
                 }
             }
             return true;
         },
         async jwt({ token, user }) {
             if (user) {
-                token.id = user._id || user.id;
+                token.id = user.id || user._id;
                 token.email = user.email;
+                token.name = user.name;
             }
             return token
         },

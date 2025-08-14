@@ -19,8 +19,7 @@ const Navbar = () => {
             {userId
                 ?
                 <div className='flex gap-5'>
-                    <img src="/shopping-cart.png" alt="" className='w-7 h-7' />
-
+                    <a href="/Mycart"><img src="/shopping-cart.png" alt="" className='w-7 h-7' /></a>
                     <div className='relative w-auto'
                         onMouseEnter={ ()=> setDropdown(true)}
                         onMouseLeave={ ()=> setDropdown(false)}
