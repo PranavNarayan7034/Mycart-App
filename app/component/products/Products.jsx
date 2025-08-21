@@ -2,23 +2,38 @@
 import React from 'react'
 import { productsData } from '@/assets/assets';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, addToWishlist } from '@/redux/cartSlice';
+import { addtoCartAsync,addtoWishlistAsync } from '@/redux/cartSlice';
+import toast from 'react-hot-toast';
 
 
 const Products = () => {
   const dispatch = useDispatch()
-  const cartList = useSelector((state) => state.cart.cartList)
-  const wishList = useSelector((state) => state.cart.wishList)
+  const cartList = useSelector((state) => state.cart.cartList || [])
+  const wishList = useSelector((state) => state.cart.wishList || [])
 
   console.log("Cart list in All product page ===", cartList)
   console.log("Wish list in All product page ===", wishList)
 
   const onAddtoCart = (produtId) => {
-    dispatch(addToCart(produtId))
+    try {
+      if (!cartList.includes(produtId)) {
+        dispatch(addtoCartAsync(produtId))
+      }
+      toast.success("Item Added to Cart")
+    } catch (error) {
+      toast.error("Add to Cart Failed !")
+    }
   }
 
   const onWishList = (produtId) => {
-    dispatch(addToWishlist(produtId))
+    try {
+      if (!wishList.includes(produtId)) {
+        dispatch(addtoWishlistAsync(produtId))
+      }
+      toast.success("Item Added to Wishlist")
+    } catch (error) {
+      toast.error("Add to Wishlist Failed !")
+    }
   }
 
   return (

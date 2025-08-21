@@ -1,11 +1,10 @@
 import React from 'react';
-// import Cartitems from '../component/Cartitems/Cartitems';
+import Cartitems from "@/app/component/CartItems/Cartitems"
 
 const page = () => {
     return (
         <div>
-            cart Page
-            {/* <Cartitems/> */}
+            <Cartitems/>
         </div>
     )
 }
